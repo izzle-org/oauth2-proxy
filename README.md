@@ -1,3 +1,43 @@
+# Izzle simple OAuth2 Proxy based on Laravel Lumen
+
+## Usage
+
+```php
+<?php
+use Illuminate\Support\Str;
+use GuzzleHttp\Client;
+
+const PROXY_BASE_URI = 'https://proxy.test';
+
+session_start();
+
+if (!empty($_REQUEST['state']) && !empty($_REQUEST['code'])) {
+    if ($_SESSION['state'] !== $_REQUEST['state']) {
+        die('Client: Invalid state');
+    }
+    
+    $client = new Client();
+    
+    $response = $client->request('POST', PROXY_BASE_URI . '/token', [
+        'verify' => false,
+        'form_params' => [
+            'code' => $_REQUEST['code']
+        ]
+    ]);
+    
+    echo json_decode((String) $response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+    die();
+}
+
+$params = [
+    'redirect_uri' => 'https://localhost/callback', // Your callback URL
+    'state' => ($_SESSION['state'] = Str::random(40)),
+    'scope' => 'profile phone'
+];
+
+header('Location: ' . PROXY_BASE_URI . '/redirect?' . http_build_query($params));
+```
+
 # Lumen PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
