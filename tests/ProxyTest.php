@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Str;
 
-class ExampleTest extends TestCase
+class ProxyTest extends TestCase
 {
     /**
      * A basic test example.
