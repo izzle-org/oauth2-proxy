@@ -9,6 +9,8 @@ use GuzzleHttp\Client;
 
 const PROXY_BASE_URI = 'https://proxy.test';
 
+require_once __DIR__ . '/vendor/autoload.php';
+
 session_start();
 
 if (!empty($_REQUEST['state']) && !empty($_REQUEST['code'])) {
