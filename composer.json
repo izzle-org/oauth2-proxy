@@ -1,7 +1,13 @@
 {
-    "name": "laravel/lumen",
-    "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "name": "izzle/oauth2-proxy",
+    "description": "Simple OAuth2 Proxy.",
+    "keywords": ["oauth", "oauth2", "auth-proxy", "framework", "laravel", "lumen"],
+    "authors": [
+        {
+            "name": "Daniel Böhmer",
+            "email": "daniel@izzle.org"
+        }
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
